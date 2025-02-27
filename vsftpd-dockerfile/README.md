@@ -28,3 +28,11 @@ docker run -d \
 -e PASV_ADDRESS=你的IP \
 kinghu88/vsftp:latest
 ```
+
+添加多个账号，需要进入容器内部进行，然后重启容器
+```
+docker exec -it myvsftpd /bin/bash
+mkdir /home/vsftpd/your_account
+echo -e "your_account\your_password" >> /etc/vsftpd/virtual_users.txt
+/usr/bin/db_load -T -t hash -f /etc/vsftpd/virtual_users.txt /etc/vsftpd/virtual_users.db
+```
