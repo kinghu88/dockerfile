@@ -44,6 +44,8 @@ echo "xferlog_std_format=${XFERLOG_STD_FORMAT}" >> /etc/vsftpd/vsftpd.conf
 echo "pasv_promiscuous=${PASV_PROMISCUOUS}" >> /etc/vsftpd/vsftpd.conf
 echo "port_promiscuous=${PORT_PROMISCUOUS}" >> /etc/vsftpd/vsftpd.conf
 
+awk ' !x[$0]++{print > "/etc/vsftpd/vsftpd.conf"}' /etc/vsftpd/vsftpd.conf
+
 # Get log file path
 export LOG_FILE=`grep xferlog_file /etc/vsftpd/vsftpd.conf|cut -d= -f2`
 

@@ -2,8 +2,6 @@ FROM ubuntu:22.04
 
 LABEL maintainer="King Hu <ajaxqq@gmail.com>"
 
-LABEL Usage="docker run -d -p [HOST PORT NUMBER]:21 -v [HOST FTP HOME]:/home/vsftpd kinghu88/vsftpd"
-
 ENV FTP_USER **String**
 ENV FTP_PASS **Random**
 ENV PASV_ADDRESS **IPv4**
@@ -36,3 +34,4 @@ VOLUME /var/log/vsftpd
 EXPOSE 20 21
 
 CMD ["/usr/sbin/run-vsftpd.sh"]
+
