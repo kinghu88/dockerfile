@@ -1,7 +1,5 @@
 FROM ubuntu:22.04
 
-LABEL maintainer="King Hu <ajaxqq@gmail.com>"
-
 ENV FTP_USER **String**
 ENV FTP_PASS **Random**
 ENV PASV_ADDRESS **IPv4**

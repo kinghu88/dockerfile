@@ -14,7 +14,7 @@ fi
 if [ "$LOG_STDOUT" = "**Boolean**" ]; then
     export LOG_STDOUT=''
 else
-    export LOG_STDOUT='Yes.'
+    export LOG_STDOUT='Yes'
 fi
 
 # Create home dir and update vsftpd user db:
