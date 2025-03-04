@@ -18,11 +18,15 @@ else
 fi
 
 # Create home dir and update vsftpd user db:
-mkdir -p "/home/vsftpd/${FTP_USER}"
-chown -R ftp:ftp /home/vsftpd/
+if [ ! -d "/home/vsftpd/${FTP_USER}" ]; then
+    mkdir -p "/home/vsftpd/${FTP_USER}"
+    chown -R ftp:ftp /home/vsftpd/
+fi
 
-echo -e "${FTP_USER}\n${FTP_PASS}" > /etc/vsftpd/virtual_users.txt
-/usr/bin/db_load -T -t hash -f /etc/vsftpd/virtual_users.txt /etc/vsftpd/virtual_users.db
+if [ ! -f "/etc/vsftpd/virtual_users.txt" ]; then
+    echo -e "${FTP_USER}\n${FTP_PASS}" > /etc/vsftpd/virtual_users.txt
+    /usr/bin/db_load -T -t hash -f /etc/vsftpd/virtual_users.txt /etc/vsftpd/virtual_users.db
+fi
 
 # Set passive mode parameters:
 if [ "$PASV_ADDRESS" = "**IPv4**" ]; then
@@ -48,8 +52,8 @@ if [ ! $LOG_STDOUT ]; then
 cat << EOB
     *************************************************
     *                                               *
-    *    Docker image: fauria/vsftpd                *
-    *    https://github.com/fauria/docker-vsftpd    *
+    *    Docker image: kinghu88/vsftp:latest        *
+    *    https://github.com/kinghu88/dockerfile     *
     *                                               *
     *************************************************
 
